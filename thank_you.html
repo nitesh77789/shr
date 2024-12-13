@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .donor-list {
+            margin: 30px auto;
+            padding: 20px;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        .donor-list h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .donor-list ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .donor-list ul li {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .button:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thank You for Your Donation!</h1>
+    <div class="donor-list">
+        <h2>List of Donors:</h2>
+        <ul id="donorNames">
+            <!-- Donor names will be dynamically loaded here -->
+        </ul>
+    </div>
+    <a href="index.html" class="button">Go to Home</a>
+    <script>
+        // Simulate fetching data from a database or backend
+        const donors = [
+            { name: "John Doe", amount: "500", type: "Money" },
+            { name: "Jane Smith", amount: "Books", type: "Books" },
+            { name: "Rahul Sharma", amount: "Clothes", type: "Clothes" }
+        ];
+
+        const donorList = document.getElementById('donorNames');
+        donors.forEach(donor => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${donor.name} donated ${donor.amount} (${donor.type})`;
+            donorList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

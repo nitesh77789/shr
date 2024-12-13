@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - God's Little Ones</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #84fab0, #8fd3f4, #a6c0fe, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradient 8s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .signup-container h1 {
+            font-size: 2.5rem;
+            color: #6a0572;
+            margin-bottom: 20px;
+        }
+
+        .signup-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .signup-container input {
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #6a0572;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .signup-container input:focus {
+            border-color: #e94e77;
+            box-shadow: 0 0 10px rgba(233, 78, 119, 0.5);
+        }
+
+        .signup-container button {
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(90deg, #e94e77, #6a0572);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(233, 78, 119, 0.5);
+        }
+
+        .signup-container button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #6a0572, #e94e77);
+            box-shadow: 0 6px 15px rgba(233, 78, 119, 0.7);
+        }
+
+        .login-link {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #6a0572;
+        }
+
+        .login-link a {
+            color: #6a0572;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .login-link a:hover {
+            color: #e94e77;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+        <form action="login.html" method="POST">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="login.html">Log In</a>
+        </div>
+    </div>
+</body>
+</html>

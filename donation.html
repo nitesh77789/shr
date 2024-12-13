@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - God's Little Ones</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradient 6s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .donation-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .donation-container h1 {
+            font-size: 3rem;
+            color: #ff6584;
+            margin-bottom: 30px;
+        }
+
+        .donation-container input, .donation-container select {
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #ff6584;
+            border-radius: 10px;
+            outline: none;
+            margin-bottom: 20px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .donation-container input:focus, .donation-container select:focus {
+            border-color: #ff8ea1;
+            box-shadow: 0 0 10px rgba(255, 101, 132, 0.5);
+        }
+
+        .donation-container button {
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(90deg, #ff6584, #ff8ea1);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 101, 132, 0.5);
+            width: 100%;
+        }
+
+        .donation-container button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #ff8ea1, #ff6584);
+            box-shadow: 0 6px 15px rgba(255, 101, 132, 0.7);
+        }
+
+        .dynamic-field {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .donation-container label {
+            font-size: 1.2rem;
+            color: #ff6584;
+        }
+    </style>
+</head>
+<body>
+    <div class="donation-container">
+        <h1>Make a Donation</h1>
+        <form id="donation-form" onsubmit="redirectToThankYou(event)">
+            <!-- User Details -->
+            <label for="name">Full Name:</label>
+            <input type="text" name="name" id="name" placeholder="Enter your full name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" name="contact" id="contact" placeholder="Enter your contact number" required>
+
+            <!-- Donation Type -->
+            <label for="donation-type">Select Donation Type:</label>
+            <select name="item" id="donation-type" required>
+                <option value="">-- Select Donation Type --</option>
+                <option value="Books">Books</option>
+                <option value="Food">Food</option>
+                <option value="Money">Money</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Toys">Toys</option>
+                <option value="Medicine">Medicine</option>
+            </select>
+
+            <!-- Dynamic Fields -->
+            <div class="dynamic-field" id="amount-field">
+                <label for="donation-amount">Enter Amount (in Rs):</label>
+                <input type="number" name="amount" id="donation-amount" placeholder="Enter Amount in Rs">
+                <label for="payment-method">Select Payment Method:</label>
+                <select name="payment-method" id="payment-method">
+                    <option value="">-- Select Payment Method --</option>
+                    <option value="Paytm">Paytm</option>
+                    <option value="GooglePay">Google Pay</option>
+                    <option value="PhonePe">PhonePe</option>
+                    <option value="Bank">Bank Transfer</option>
+                </select>
+                <div class="dynamic-field" id="upi-field">
+                    <input type="text" name="upi-id" id="upi-id" placeholder="Enter UPI ID (e.g., 123@upi)">
+                </div>
+                <div class="dynamic-field" id="bank-field">
+                    <input type="text" name="bank-name" id="bank-name" placeholder="Enter Bank Name">
+                    <input type="text" name="account-number" id="account-number" placeholder="Enter Account Number">
+                </div>
+            </div>
+
+            <div class="dynamic-field" id="quantity-field">
+                <label for="donation-quantity">Enter Quantity:</label>
+                <input type="number" name="quantity" id="donation-quantity" placeholder="Enter Quantity">
+            </div>
+
+            <div class="dynamic-field" id="medicine-field">
+                <label for="medicine-name">Enter Medicine Name:</label>
+                <input type="text" name="medicine" id="medicine-name" placeholder="Enter Medicine Name">
+            </div>
+
+            <button type="submit">Donate Now</button>
+        </form>
+    </div>
+
+    <script>
+        const donationType = document.getElementById('donation-type');
+        const amountField = document.getElementById('amount-field');
+        const quantityField = document.getElementById('quantity-field');
+        const medicineField = document.getElementById('medicine-field');
+        const paymentMethod = document.getElementById('payment-method');
+        const upiField = document.getElementById('upi-field');
+        const bankField = document.getElementById('bank-field');
+
+        // Show/hide dynamic fields based on donation type
+        donationType.addEventListener('change', function () {
+            amountField.style.display = this.value === 'Money' ? 'block' : 'none';
+            quantityField.style.display = this.value && this.value !== 'Money' && this.value !== 'Medicine' ? 'block' : 'none';
+            medicineField.style.display = this.value === 'Medicine' ? 'block' : 'none';
+        });
+
+        // Show/hide UPI or Bank details based on payment method
+        paymentMethod.addEventListener('change', function () {
+            upiField.style.display = (this.value === 'Paytm' || this.value === 'GooglePay' || this.value === 'PhonePe') ? 'block' : 'none';
+            bankField.style.display = this.value === 'Bank' ? 'block' : 'none';
+        });
+
+        function redirectToThankYou(event) {
+            event.preventDefault();
+            alert("Thank you for your donation!");
+            window.location.href = "thank_you.html";
+        }
+    </script>
+</body>
+</html>
